@@ -1,0 +1,245 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" style="background-color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+<defs>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08"/>
+  </filter>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#0284c7" />
+  </marker>
+  <marker id="arrowhead-feedback" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#0284c7" />
+  </marker>
+</defs>
+<rect x="0" y="0" width="1920" height="135" fill="#ffffff" />
+<rect x="50" y="25" width="460" height="26" rx="13" fill="#e0f2fe" />
+<text x="65" y="42" font-size="11" font-weight="700" fill="#0284c7" letter-spacing="1.5">AUTONOMOUS MULTI-AGENT SATELLITE CONSTELLATION ARCHITECTURE</text>
+<text x="50" y="80" font-size="28" font-weight="800" fill="#0f172a">System Architecture &amp; Mathematical Methodology Pipeline</text>
+<text x="50" y="110" font-size="14" font-weight="400" fill="#475569">End-to-end framework integrating 6-DOF Keplerian-J₂ orbital dynamics, dynamic laser crosslinks, multi-modal GAT-LSTM-RF risk inference, distributed auction matching, and constrained 6-DOF MPC.</text>
+<g transform="translate(1450, 40)">
+  <rect x="0" y="0" width="180" height="34" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <circle cx="20" cy="17" r="5" fill="#10b981"/>
+  <text x="35" y="22" font-size="12" font-weight="700" fill="#0f172a">20 Satellites + 1 ISS</text>
+  <rect x="195" y="0" width="225" height="34" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <circle cx="215" cy="17" r="5" fill="#0284c7"/>
+  <text x="230" y="22" font-size="12" font-weight="700" fill="#0f172a">Closed-Loop Rate: 10 Hz (0.1s)</text>
+</g>
+<g id="stage-1">
+  <rect x="50" y="155" width="336" height="765" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+  <path d="M 50 169 A 14 14 0 0 1 64 155 L 372 155 A 14 14 0 0 1 386 169 L 386 230 L 50 230 Z" fill="#e0f2fe" />
+  <line x1="50" y1="230" x2="386" y2="230" stroke="#0284c7" stroke-width="2" />
+  <rect x="64" y="165" width="65" height="18" rx="4" fill="#0284c7" />
+  <text x="72" y="178" font-size="10" font-weight="800" fill="#ffffff" letter-spacing="1">STAGE 1</text>
+  <text x="138" y="178" font-size="10" font-weight="700" fill="#0284c7" letter-spacing="0.8">PHYSICAL ENVIRONMENT</text>
+  <text x="64" y="210" font-size="16" font-weight="800" fill="#0f172a">6-DOF Dynamics & Orbit</text>
+  <rect x="62" y="243" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="72" y="263" font-size="12" font-weight="700" fill="#0f172a">Orbital Geometry & Frame</text>
+  <rect x="296" y="252" width="68" height="16" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="0.7"/>
+  <text x="303" y="264" font-size="8.5" font-weight="700" fill="#0284c7">ECI FRAME</text>
+  <text x="72" y="281" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• 20 LEO Satellites in 4 Walker planes</text>
+  <text x="72" y="299" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Orbital Altitude h = 550 km, i = 53.0°</text>
+  <text x="72" y="317" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• 1 Non-Cooperative Target (ISS Node)</text>
+  <rect x="62" y="391" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="72" y="411" font-size="12" font-weight="700" fill="#0f172a">3-DOF Orbital Mechanics (J₂)</text>
+  <rect x="278" y="400" width="86" height="16" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="0.7"/>
+  <text x="285" y="412" font-size="8.5" font-weight="700" fill="#0284c7">NEWTON-EULER</text>
+  <text x="72" y="429" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• ṙ = v,   v̇ = a_grav + a_J2 + (F_thrust / m)</text>
+  <text x="72" y="447" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Keplerian: a_grav = -μ r / ‖r‖³</text>
+  <text x="72" y="465" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Earth Oblateness (J₂ = 1.0826×10⁻³):</text>
+  <text x="72" y="483" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">  a_J2 = 3/2 J₂ (μRe²/r⁵) [x(5z²/r²-1), ...]</text>
+  <rect x="62" y="539" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="72" y="559" font-size="12" font-weight="700" fill="#0f172a">3-DOF Attitude Dynamics</text>
+  <rect x="266" y="548" width="98" height="16" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="0.7"/>
+  <text x="273" y="560" font-size="8.5" font-weight="700" fill="#0284c7">EULER-LAGRANGE</text>
+  <text x="72" y="577" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Euler Angles: Θ = [ϕ, θ, ψ]ᵀ (Roll, Pitch, Yaw)</text>
+  <text x="72" y="595" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Kinematics: Θ̇ = W(Θ) ω</text>
+  <text x="72" y="613" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Rigid Body: J ω̇ + ω × (J ω) = τ_control</text>
+  <text x="72" y="631" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Inertia: J = diag([25.0, 20.0, 15.0]) kg·m²</text>
+  <rect x="62" y="687" width="312" height="95" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5" />
+  <text x="72" y="707" font-size="12" font-weight="700" fill="#0284c7">Stage Output</text>
+  <rect x="278" y="696" width="86" height="16" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="0.7"/>
+  <text x="285" y="708" font-size="8.5" font-weight="700" fill="#0284c7">STATE VECTOR</text>
+  <text x="72" y="725" font-size="10" font-weight="700" fill="#0284c7" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">➤ True State X(t) = [r, v, Θ, ω, Batt, Health]ᵀ</text>
+  <text x="72" y="743" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">  Synchronized at microsecond epochs</text>
+</g>
+<g transform="translate(0, 0)">
+  <line x1="391" y1="515" x2="416" y2="515" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+  <circle cx="403.5" cy="515" r="3" fill="#0284c7" />
+</g>
+<g id="stage-2">
+  <rect x="421" y="155" width="336" height="765" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+  <path d="M 421 169 A 14 14 0 0 1 435 155 L 743 155 A 14 14 0 0 1 757 169 L 757 230 L 421 230 Z" fill="#e0e7ff" />
+  <line x1="421" y1="230" x2="757" y2="230" stroke="#4f46e5" stroke-width="2" />
+  <rect x="435" y="165" width="65" height="18" rx="4" fill="#4f46e5" />
+  <text x="443" y="178" font-size="10" font-weight="800" fill="#ffffff" letter-spacing="1">STAGE 2</text>
+  <text x="509" y="178" font-size="10" font-weight="700" fill="#4f46e5" letter-spacing="0.8">GRAPH THEORY & OPTICS</text>
+  <text x="435" y="210" font-size="16" font-weight="800" fill="#0f172a">Dynamic ISL Topology</text>
+  <rect x="433" y="243" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="443" y="263" font-size="12" font-weight="700" fill="#0f172a">Geometric Line-of-Sight (LOS)</text>
+  <rect x="631" y="252" width="104" height="16" rx="4" fill="#e0e7ff" stroke="#4f46e5" stroke-width="0.7"/>
+  <text x="638" y="264" font-size="8.5" font-weight="700" fill="#4f46e5">EARTH OCCLUSION</text>
+  <text x="443" y="281" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Inter-satellite vector: r_ij = r_j - r_i</text>
+  <text x="443" y="299" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Closest ray distance: t* = -(r_i · r_ij)/‖r_ij‖²</text>
+  <text x="443" y="317" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Occlusion check: d_min ≥ Re + h_buffer</text>
+  <text x="443" y="335" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• LOS_ij = 1 if clear ray, 0 if blocked</text>
+  <rect x="433" y="391" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="443" y="411" font-size="12" font-weight="700" fill="#0f172a">Multi-Factor Link Quality (Q)</text>
+  <rect x="649" y="400" width="86" height="16" rx="4" fill="#e0e7ff" stroke="#4f46e5" stroke-width="0.7"/>
+  <text x="656" y="412" font-size="8.5" font-weight="700" fill="#4f46e5">METRIC SCORE</text>
+  <text x="443" y="429" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Range Threshold: d_ij ≤ 3500 km (Optical)</text>
+  <text x="443" y="447" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Q_ij = max(0, 1 - d_ij/R_max)¹·⁵</text>
+  <text x="443" y="465" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">         × 0.5(Health_i + Health_j)</text>
+  <text x="443" y="483" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">         × (1 - 0.3(Risk_i + Risk_j))</text>
+  <rect x="433" y="539" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="443" y="559" font-size="12" font-weight="700" fill="#0f172a">Time-Varying Graph A(t)</text>
+  <rect x="667" y="548" width="68" height="16" rx="4" fill="#e0e7ff" stroke="#4f46e5" stroke-width="0.7"/>
+  <text x="674" y="560" font-size="8.5" font-weight="700" fill="#4f46e5">ADJACENCY</text>
+  <text x="443" y="577" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Dynamic graph G(t) = (V, E(t))</text>
+  <text x="443" y="595" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• A_ij(t) = 1  ⟺  (LOS_ij = 1 ∧ Q_ij ≥ 0.15)</text>
+  <text x="443" y="613" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Mean constellation connectivity: 14-28 links</text>
+  <text x="443" y="631" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Decentralized multi-agent packet routing</text>
+  <rect x="433" y="687" width="312" height="95" rx="8" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.5" />
+  <text x="443" y="707" font-size="12" font-weight="700" fill="#4f46e5">Stage Output</text>
+  <rect x="637" y="696" width="98" height="16" rx="4" fill="#e0e7ff" stroke="#4f46e5" stroke-width="0.7"/>
+  <text x="644" y="708" font-size="8.5" font-weight="700" fill="#4f46e5">TOPOLOGY GRAPH</text>
+  <text x="443" y="725" font-size="10" font-weight="700" fill="#4f46e5" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">➤ Graph Adjacency Matrix A(t) ∈ ℝ²¹ˣ²¹</text>
+  <text x="443" y="743" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">  + Link Quality Weight Matrix Q(t)</text>
+</g>
+<g transform="translate(0, 0)">
+  <line x1="762" y1="515" x2="787" y2="515" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+  <circle cx="774.5" cy="515" r="3" fill="#0284c7" />
+</g>
+<g id="stage-3">
+  <rect x="792" y="155" width="336" height="765" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+  <path d="M 792 169 A 14 14 0 0 1 806 155 L 1114 155 A 14 14 0 0 1 1128 169 L 1128 230 L 792 230 Z" fill="#f3e8ff" />
+  <line x1="792" y1="230" x2="1128" y2="230" stroke="#7e22ce" stroke-width="2" />
+  <rect x="806" y="165" width="65" height="18" rx="4" fill="#7e22ce" />
+  <text x="814" y="178" font-size="10" font-weight="800" fill="#ffffff" letter-spacing="1">STAGE 3</text>
+  <text x="880" y="178" font-size="10" font-weight="700" fill="#7e22ce" letter-spacing="0.8">DEEP LEARNING / GNN</text>
+  <text x="806" y="210" font-size="16" font-weight="800" fill="#0f172a">Multi-Modal AI Perception</text>
+  <rect x="804" y="243" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="814" y="263" font-size="12" font-weight="700" fill="#0f172a">Graph Attention Network (GAT)</text>
+  <rect x="1014" y="252" width="92" height="16" rx="4" fill="#f3e8ff" stroke="#7e22ce" stroke-width="0.7"/>
+  <text x="1021" y="264" font-size="8.5" font-weight="700" fill="#7e22ce">SPATIAL EMBED</text>
+  <text x="814" y="281" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Node Features h_i ∈ ℝ⁷: [SoC, H, R, d_tgt, Alt, Q, Deg]</text>
+  <text x="814" y="299" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Attention: α_ij = Softmax(LeakyReLU(aᵀ[Wh_i ‖ Wh_j]))</text>
+  <text x="814" y="317" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Constellation spatial embedding: z_i^GAT ∈ ℝ⁶⁴</text>
+  <rect x="804" y="391" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="814" y="411" font-size="12" font-weight="700" fill="#0f172a">LSTM Temporal Predictor</text>
+  <rect x="1026" y="400" width="80" height="16" rx="4" fill="#f3e8ff" stroke="#7e22ce" stroke-width="0.7"/>
+  <text x="1033" y="412" font-size="8.5" font-weight="700" fill="#7e22ce">TIME-SERIES</text>
+  <text x="814" y="429" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Telemetry sequence window X_i ∈ ℝ^(K×5)</text>
+  <text x="814" y="447" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Hidden states: h_t = LSTM(x_t, h_{t-1})</text>
+  <text x="814" y="465" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Temporal degradation embedding: z_i^LSTM ∈ ℝ³²</text>
+  <text x="814" y="483" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Predicts battery SoC drift & thermal fatigue</text>
+  <rect x="804" y="539" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="814" y="559" font-size="12" font-weight="700" fill="#0f172a">Random Forest & Risk MLP</text>
+  <rect x="1014" y="548" width="92" height="16" rx="4" fill="#f3e8ff" stroke="#7e22ce" stroke-width="0.7"/>
+  <text x="1021" y="560" font-size="8.5" font-weight="700" fill="#7e22ce">FUSION & RISK</text>
+  <text x="814" y="577" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Random Forest (80 trees): Anomaly score r̂</text>
+  <text x="814" y="595" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Multi-Modal Fusion: z_fused = LayerNorm(W_f [z^GAT ‖ z^LSTM ‖ z^RF])</text>
+  <text x="814" y="613" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• MLP (128 → 64 → 32 → 4):</text>
+  <text x="814" y="631" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">  P_f (Failure Prob), R_m (Mission Risk)</text>
+  <rect x="804" y="687" width="312" height="95" rx="8" fill="#f3e8ff" stroke="#7e22ce" stroke-width="1.5" />
+  <text x="814" y="707" font-size="12" font-weight="700" fill="#7e22ce">Stage Output</text>
+  <rect x="1002" y="696" width="104" height="16" rx="4" fill="#f3e8ff" stroke="#7e22ce" stroke-width="0.7"/>
+  <text x="1009" y="708" font-size="8.5" font-weight="700" fill="#7e22ce">INFERRED HEALTH</text>
+  <text x="814" y="725" font-size="10" font-weight="700" fill="#7e22ce" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">➤ Validated Failure Risk P_f,i ∈ [0, 1]</text>
+  <text x="814" y="743" font-size="10" font-weight="700" fill="#7e22ce" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">➤ Projected Battery Capacity Margin [%]</text>
+</g>
+<g transform="translate(0, 0)">
+  <line x1="1133" y1="515" x2="1158" y2="515" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+  <circle cx="1145.5" cy="515" r="3" fill="#0284c7" />
+</g>
+<g id="stage-4">
+  <rect x="1163" y="155" width="336" height="765" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+  <path d="M 1163 169 A 14 14 0 0 1 1177 155 L 1485 155 A 14 14 0 0 1 1499 169 L 1499 230 L 1163 230 Z" fill="#fef3c7" />
+  <line x1="1163" y1="230" x2="1499" y2="230" stroke="#b45309" stroke-width="2" />
+  <rect x="1177" y="165" width="65" height="18" rx="4" fill="#b45309" />
+  <text x="1185" y="178" font-size="10" font-weight="800" fill="#ffffff" letter-spacing="1">STAGE 4</text>
+  <text x="1251" y="178" font-size="10" font-weight="700" fill="#b45309" letter-spacing="0.8">OPTIMIZATION & AUCTION</text>
+  <text x="1177" y="210" font-size="16" font-weight="800" fill="#0f172a">Multi-Agent Allocation</text>
+  <rect x="1175" y="243" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="1185" y="263" font-size="12" font-weight="700" fill="#0f172a">Global Cost Matrix C(i, j)</text>
+  <rect x="1367" y="252" width="110" height="16" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="0.7"/>
+  <text x="1374" y="264" font-size="8.5" font-weight="700" fill="#b45309">UTILITY FUNCTION</text>
+  <text x="1185" y="281" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• C(i, j) = α·Dist_ij + β·Risk_i - γ·Batt_i + δ·Delay_ij</text>
+  <text x="1185" y="299" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Calibrated Weights:</text>
+  <text x="1185" y="317" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">  α = 0.40  (Proximity & Slewing)</text>
+  <text x="1185" y="335" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">  β = 0.25  (AI Inferred Risk P_f)</text>
+  <text x="1185" y="353" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">  γ = 0.25  (Battery State-of-Charge)</text>
+  <text x="1185" y="371" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">  δ = 0.10  (ISL Communication Latency)</text>
+  <rect x="1175" y="391" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="1185" y="411" font-size="12" font-weight="700" fill="#0f172a">Hungarian Solver (Optimal)</text>
+  <rect x="1379" y="400" width="98" height="16" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="0.7"/>
+  <text x="1386" y="412" font-size="8.5" font-weight="700" fill="#b45309">O(N³) MATCHING</text>
+  <text x="1185" y="429" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Bipartite Primal-Dual Kuhn-Munkres:</text>
+  <text x="1185" y="447" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">  min ∑_{i,j} C(i,j) x_ij  s.t. ∑ x_ij = 1</text>
+  <text x="1185" y="465" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Globally minimal cost: C_norm = 0.180</text>
+  <text x="1185" y="483" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Execution latency: 1.20 ms</text>
+  <rect x="1175" y="539" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="1185" y="559" font-size="12" font-weight="700" fill="#0f172a">Distributed Auction (Bertsekas)</text>
+  <rect x="1385" y="548" width="92" height="16" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="0.7"/>
+  <text x="1392" y="560" font-size="8.5" font-weight="700" fill="#b45309">DECENTRALIZED</text>
+  <text x="1185" y="577" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Multi-agent bidding with ε-slackness:</text>
+  <text x="1185" y="595" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">  b_ij = v_ij - p_j + ε,   p_j ← p_j + max(b_ij)</text>
+  <text x="1185" y="613" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Decentralized consensus, 94.2% efficiency</text>
+  <text x="1185" y="631" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Greedy baseline O(MN): fast fallback</text>
+  <rect x="1175" y="687" width="312" height="95" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.5" />
+  <text x="1185" y="707" font-size="12" font-weight="700" fill="#b45309">Stage Output</text>
+  <rect x="1367" y="696" width="110" height="16" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="0.7"/>
+  <text x="1374" y="708" font-size="8.5" font-weight="700" fill="#b45309">OPTIMAL DISPATCH</text>
+  <text x="1185" y="725" font-size="10" font-weight="700" fill="#b45309" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">➤ Target Assignment Vector: Sat i* → Target j*</text>
+  <text x="1185" y="743" font-size="10" font-weight="700" fill="#b45309" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">➤ Verified zero multi-tasking conflict</text>
+</g>
+<g transform="translate(0, 0)">
+  <line x1="1504" y1="515" x2="1529" y2="515" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+  <circle cx="1516.5" cy="515" r="3" fill="#0284c7" />
+</g>
+<g id="stage-5">
+  <rect x="1534" y="155" width="336" height="765" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+  <path d="M 1534 169 A 14 14 0 0 1 1548 155 L 1856 155 A 14 14 0 0 1 1870 169 L 1870 230 L 1534 230 Z" fill="#dcfce7" />
+  <line x1="1534" y1="230" x2="1870" y2="230" stroke="#15803d" stroke-width="2" />
+  <rect x="1548" y="165" width="65" height="18" rx="4" fill="#15803d" />
+  <text x="1556" y="178" font-size="10" font-weight="800" fill="#ffffff" letter-spacing="1">STAGE 5</text>
+  <text x="1622" y="178" font-size="10" font-weight="700" fill="#15803d" letter-spacing="0.8">REAL-TIME CONTROL</text>
+  <text x="1548" y="210" font-size="16" font-weight="800" fill="#0f172a">Constrained 6-DOF MPC</text>
+  <rect x="1546" y="243" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="1556" y="263" font-size="12" font-weight="700" fill="#0f172a">Receding Horizon Optimization</text>
+  <rect x="1750" y="252" width="98" height="16" rx="4" fill="#dcfce7" stroke="#15803d" stroke-width="0.7"/>
+  <text x="1757" y="264" font-size="8.5" font-weight="700" fill="#15803d">QP FORMULATION</text>
+  <text x="1556" y="281" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• min_U J = ∑_{k=1}^N (‖x_k - x_ref‖_Q² + ‖u_k‖_R²)</text>
+  <text x="1556" y="299" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Discrete Dynamics: x_{k+1} = A_k x_k + B_k u_k</text>
+  <text x="1556" y="317" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Prediction Horizon: N = 10,  Δt = 0.1 s</text>
+  <text x="1556" y="335" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Solved via OSQP Convex Solver (4.38 ms)</text>
+  <rect x="1546" y="391" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="1556" y="411" font-size="12" font-weight="700" fill="#0f172a">Physical Actuator Constraints</text>
+  <rect x="1768" y="400" width="80" height="16" rx="4" fill="#dcfce7" stroke="#15803d" stroke-width="0.7"/>
+  <text x="1775" y="412" font-size="8.5" font-weight="700" fill="#15803d">HARD LIMITS</text>
+  <text x="1556" y="429" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Thrust limit: ‖u_thrust‖₂ ≤ 5.0 N (Monopropellant)</text>
+  <text x="1556" y="447" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Torque limit: ‖τ_control‖₂ ≤ 0.5 N·m (Wheels)</text>
+  <text x="1556" y="465" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Angular rate constraint: ‖ω‖₂ ≤ 0.15 rad/s</text>
+  <text x="1556" y="483" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Actuator Saturation Check: 0.0% nominal</text>
+  <rect x="1546" y="539" width="312" height="138" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <text x="1556" y="559" font-size="12" font-weight="700" fill="#0f172a">Safety & Payload Execution</text>
+  <rect x="1750" y="548" width="98" height="16" rx="4" fill="#dcfce7" stroke="#15803d" stroke-width="0.7"/>
+  <text x="1757" y="560" font-size="8.5" font-weight="700" fill="#15803d">MISSION TARGET</text>
+  <text x="1556" y="577" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Debris Avoidance: ‖r_sat - r_debris‖ ≥ 2.0 km</text>
+  <text x="1556" y="595" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Precision Nadir Pointing: Attitude RMSE < 3.8°</text>
+  <text x="1556" y="613" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Optical Sensor Lock & Earth Surface Imaging</text>
+  <text x="1556" y="631" font-size="10" font-weight="500" fill="#1e293b" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">• Autonomous Re-allocation if Anomaly detected</text>
+  <rect x="1546" y="687" width="312" height="95" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.5" />
+  <text x="1556" y="707" font-size="12" font-weight="700" fill="#15803d">Stage Output</text>
+  <rect x="1726" y="696" width="122" height="16" rx="4" fill="#dcfce7" stroke="#15803d" stroke-width="0.7"/>
+  <text x="1733" y="708" font-size="8.5" font-weight="700" fill="#15803d">PHYSICAL ACTUATION</text>
+  <text x="1556" y="725" font-size="10" font-weight="700" fill="#15803d" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">➤ Optimal Control Trajectory U* = [F*, τ*]ᵀ</text>
+  <text x="1556" y="743" font-size="10" font-weight="700" fill="#15803d" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">➤ Captured Target Telemetry & Payload Data</text>
+</g>
+<g id="feedback-loop">
+  <rect x="50" y="940" width="1820" height="75" rx="12" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" stroke-dasharray="8,4" />
+  <path d="M 1700 932 L 1700 978 L 120 978 L 120 932" fill="none" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrowhead-feedback)"/>
+  <rect x="75" y="954" width="260" height="24" rx="6" fill="#0284c7" />
+  <text x="85" y="970" font-size="11" font-weight="800" fill="#ffffff" letter-spacing="1">CLOSED-LOOP AUTONOMY ENGINE</text>
+  <text x="355" y="971" font-size="13" font-weight="700" fill="#0f172a">High-Frequency Real-Time Telemetry &amp; State Feedback (Δt = 0.1 s, 10 Hz):</text>
+  <text x="355" y="993" font-size="11" font-weight="500" fill="#475569" font-family="SFMono-Regular, Consolas, 'Courier New', monospace">True state vector [r(t), v(t), Θ(t), ω(t), SoC(t)] + microsecond Multi-Agent flight event stream continuously recirculate into Stage 1 (Dynamics) &amp; Stage 2 (ISL Topology) for receding horizon closed-loop execution.</text>
+</g>
+</svg>

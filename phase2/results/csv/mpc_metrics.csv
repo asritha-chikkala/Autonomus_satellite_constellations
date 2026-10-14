@@ -1,0 +1,11 @@
+Metric,Value,Unit
+Position_RMSE,2.8342,km
+Position_MAE,2.6569,km
+Attitude_RMSE,2.5299,rad
+Attitude_MAE,2.5290,rad
+Total_Thrust_Effort,14.8497,N*s
+Total_Torque_Effort,2.0000,N*m*s
+Settling_Time,3.70,s
+Thrust_Constraint_Violations,0,count
+Torque_Constraint_Violations,0,count
+Battery_Consumed,0.07,pct

@@ -1,0 +1,816 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --background: #08070f;
+  --foreground: #f3f4f6;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Aerospace Mission Control Scanlines and HUD Glow */
+.hud-panel {
+  background: rgba(13, 19, 32, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6), inset 0 0 12px rgba(0, 229, 255, 0.03);
+}
+
+.hud-panel-active {
+  border-color: rgba(0, 229, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.2), inset 0 0 16px rgba(0, 229, 255, 0.08);
+}
+
+.hud-panel-alert {
+  border-color: rgba(255, 42, 85, 0.6);
+  box-shadow: 0 0 20px rgba(255, 42, 85, 0.25), inset 0 0 16px rgba(255, 42, 85, 0.08);
+}
+
+.glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.7);
+}
+
+.glow-emerald {
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.7);
+}
+
+.glow-crimson {
+  text-shadow: 0 0 10px rgba(255, 42, 85, 0.7);
+}
+
+/* Exact Glassmorphism Texture from Reference Image (Muted, Matte, Deep Slate) */
+.glass-cockpit {
+  background: radial-gradient(circle at 50% 40%, rgba(15, 23, 42, 0.4) 0%, rgba(3, 7, 18, 0.88) 100%), rgba(8, 14, 26, 0.75);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.95), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(13, 20, 36, 0.62);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(16, 25, 45, 0.72);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-pill {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  transition: all 0.2s ease;
+}
+
+.glass-pill:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(22, 33, 58, 0.75);
+}
+
+.glass-pill-active {
+  background: rgba(0, 255, 136, 0.06);
+  border: 1px solid rgba(0, 255, 136, 0.55);
+  box-shadow: 0 0 12px rgba(0, 255, 136, 0.15);
+  color: #ffffff;
+}
+
+.lens-flare {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.05) 20%, rgba(147, 197, 253, 0.25) 50%, rgba(56, 189, 248, 0.05) 80%, transparent 100%);
+  filter: blur(1.5px);
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Custom telemetry scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(6, 11, 22, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(27, 42, 70, 0.8);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Print Media Styles for 1-Click Flight Readiness & Mission Report PDF Export */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 14mm;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  header,
+  footer,
+  nav,
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  .print-report-container {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+  }
+}
+
+/* ========================================================================= */
+/* LIGHT MODE THEME OVERRIDES                                                */
+/* ========================================================================= */
+html.light,
+.light-mode {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  color-scheme: light;
+}
+
+html.light body,
+.light-mode {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Light mode Header */
+.light-mode header {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.95) !important;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+.light-mode header nav button {
+  color: #475569 !important;
+}
+
+.light-mode header nav button:hover {
+  color: #0f172a !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.light-mode header nav button.active-nav-btn,
+.light-mode header nav button:has(span.text-amber-300),
+.light-mode header nav button[class*="text-amber-300"] {
+  color: #b45309 !important;
+  background-color: #fef3c7 !important;
+  font-weight: 700 !important;
+}
+
+/* Light mode Panels & HUD */
+.light-mode .hud-panel {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid rgba(203, 213, 225, 0.8) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), inset 0 0 12px rgba(14, 165, 233, 0.02) !important;
+  color: #0f172a !important;
+}
+
+.light-mode .hud-panel-active {
+  border-color: rgba(14, 165, 233, 0.7) !important;
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.15) !important;
+}
+
+.light-mode .glass-cockpit {
+  background: radial-gradient(circle at 50% 40%, rgba(248, 250, 252, 0.75) 0%, rgba(255, 255, 255, 0.96) 100%), rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08), inset 0 1px 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+.light-mode .glass-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.05) !important;
+  color: #0f172a !important;
+}
+
+.light-mode .glass-card:hover {
+  border-color: rgba(203, 213, 225, 1) !important;
+  background: #ffffff !important;
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.08) !important;
+}
+
+.light-mode .glass-pill {
+  background: rgba(241, 245, 249, 0.9) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  color: #334155 !important;
+}
+
+.light-mode .glass-pill:hover {
+  background: rgba(226, 232, 240, 0.95) !important;
+  color: #0f172a !important;
+}
+
+.light-mode .glass-pill-active {
+  background: rgba(14, 165, 233, 0.1) !important;
+  border: 1px solid rgba(14, 165, 233, 0.6) !important;
+  color: #0369a1 !important;
+}
+
+/* Card & Section dark backgrounds across all views */
+.light-mode [class*="bg-[#0B0914]"],
+.light-mode [class*="bg-[#08070F]"],
+.light-mode [class*="bg-[#0b1220]"],
+.light-mode [class*="bg-[#120E22]"],
+.light-mode [class*="bg-[#0E0C1A]"],
+.light-mode [class*="bg-slate-950"],
+.light-mode [class*="bg-space-950"],
+.light-mode [class*="bg-space-900"],
+.light-mode [class*="bg-space-850"],
+.light-mode [class*="bg-space-800"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Buttons with dark backgrounds in light mode */
+.light-mode button[class*="bg-slate-950"],
+.light-mode button[class*="bg-space-950"],
+.light-mode button[class*="bg-space-900"],
+.light-mode button[class*="bg-space-800"] {
+  background-color: #f1f5f9 !important;
+  color: #1e293b !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light-mode button[class*="bg-space-950"]:hover,
+.light-mode button[class*="bg-space-900"]:hover,
+.light-mode button[class*="bg-space-800"]:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* Gradient dark cards in light mode */
+.light-mode [class*="from-cyan-950"],
+.light-mode [class*="from-amber-950"],
+.light-mode [class*="from-blue-950"],
+.light-mode [class*="from-purple-950"] {
+  background: linear-gradient(to right, #f8fafc, #f1f5f9) !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+/* ========================================================================= */
+/* TYPOGRAPHY & TEXT COLORS IN LIGHT MODE                                    */
+/* ========================================================================= */
+
+.light-mode h1,
+.light-mode h2,
+.light-mode h3,
+.light-mode h4,
+.light-mode h5,
+.light-mode h6 {
+  color: #0f172a !important;
+}
+
+/* In light mode, turn text-white into dark slate on light backgrounds */
+/* (Excluding primary buttons with solid colored backgrounds and Home 3D Earth overlay) */
+.light-mode :not(main.relative.min-h-\[92vh\] *):not(button[class*="bg-[#F59E0B]"]):not(button[class*="bg-amber-500"]):not(button[class*="bg-cyan-500"]):not(button[class*="bg-sky-600"]):not(button[class*="bg-blue-600"]):not(button[class*="bg-emerald-600"]):not(button[class*="bg-red-600"]):not(.keep-white).text-white {
+  color: #0f172a !important;
+}
+
+.light-mode .text-slate-100,
+.light-mode .text-slate-200 {
+  color: #0f172a !important;
+}
+
+.light-mode .text-slate-300 {
+  color: #1e293b !important;
+}
+
+.light-mode .text-slate-400 {
+  color: #475569 !important;
+}
+
+.light-mode .text-slate-500 {
+  color: #64748b !important;
+}
+
+.light-mode .text-gray-100,
+.light-mode .text-gray-200 {
+  color: #0f172a !important;
+}
+
+.light-mode .text-gray-300 {
+  color: #1e293b !important;
+}
+
+.light-mode .text-gray-400 {
+  color: #475569 !important;
+}
+
+/* Light mode Accents: Transform washed-out light colors into rich, high-contrast dark accents */
+.light-mode .text-cyan-200,
+.light-mode .text-cyan-300,
+.light-mode .text-cyan-400 {
+  color: #0369a1 !important;
+}
+
+.light-mode .text-amber-200,
+.light-mode .text-amber-300,
+.light-mode .text-amber-400 {
+  color: #b45309 !important;
+}
+
+.light-mode .text-emerald-200,
+.light-mode .text-emerald-300,
+.light-mode .text-emerald-400 {
+  color: #15803d !important;
+}
+
+.light-mode .text-purple-200,
+.light-mode .text-purple-300,
+.light-mode .text-purple-400 {
+  color: #7e22ce !important;
+}
+
+.light-mode .text-teal-200,
+.light-mode .text-teal-300,
+.light-mode .text-teal-400 {
+  color: #0f766e !important;
+}
+
+.light-mode .text-red-200,
+.light-mode .text-red-300,
+.light-mode .text-red-400 {
+  color: #b91c1c !important;
+}
+
+/* Borders in light mode */
+.light-mode [class*="border-white"],
+.light-mode [class*="border-slate-800"],
+.light-mode [class*="border-slate-700"],
+.light-mode [class*="border-slate-900"],
+.light-mode .border-slate-800,
+.light-mode .border-slate-700,
+.light-mode .border-slate-900 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Inputs, Selects, and Textareas */
+.light-mode input,
+.light-mode select,
+.light-mode textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light-mode input:focus,
+.light-mode select:focus,
+.light-mode textarea:focus {
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2) !important;
+}
+
+.light-mode option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Tables in light mode */
+.light-mode table {
+  color: #0f172a !important;
+}
+.light-mode th {
+  background-color: #f8fafc !important;
+  color: #334155 !important;
+  border-color: #e2e8f0 !important;
+}
+.light-mode td {
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+.light-mode tr:hover td {
+  background-color: rgba(241, 245, 249, 0.5);
+}
+
+/* Status pills and telemetry items */
+.light-mode [class*="bg-cyan-950"] {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border-color: #7dd3fc !important;
+}
+
+.light-mode [class*="bg-emerald-950"] {
+  background-color: #dcfce7 !important;
+  color: #15803d !important;
+  border-color: #86efac !important;
+}
+
+.light-mode [class*="bg-amber-950"] {
+  background-color: #fef3c7 !important;
+  color: #b45309 !important;
+  border-color: #fde68a !important;
+}
+
+.light-mode [class*="bg-purple-950"] {
+  background-color: #f3e8ff !important;
+  color: #7e22ce !important;
+  border-color: #d8b4fe !important;
+}
+
+.light-mode [class*="bg-red-950"] {
+  background-color: #fee2e2 !important;
+  color: #b91c1c !important;
+  border-color: #fca5a5 !important;
+}
+
+/* Heatmap cell highlights in light mode */
+.light-mode [class*="bg-emerald-950/40"] {
+  background-color: #dcfce7 !important;
+  color: #14532d !important;
+  border-color: #86efac !important;
+}
+.light-mode [class*="bg-teal-950/40"] {
+  background-color: #ccfbf1 !important;
+  color: #115e59 !important;
+  border-color: #5eead4 !important;
+}
+.light-mode [class*="bg-amber-950/40"] {
+  background-color: #fef3c7 !important;
+  color: #78350f !important;
+  border-color: #fde68a !important;
+}
+.light-mode [class*="bg-red-950/40"] {
+  background-color: #fee2e2 !important;
+  color: #7f1d1d !important;
+  border-color: #fca5a5 !important;
+}
+.light-mode [class*="bg-cyan-500/30"] {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border-color: #0284c7 !important;
+}
+
+/* Progress bar tracks in light mode */
+.light-mode .bg-space-900.rounded-full,
+.light-mode [class*="bg-space-900"].rounded-full,
+.light-mode .bg-slate-900.rounded-full {
+  background-color: #e2e8f0 !important;
+}
+
+/* Modals & Backdrop */
+.light-mode .fixed.inset-0.bg-black\/60 {
+  background-color: rgba(15, 23, 42, 0.4) !important;
+}
+
+/* Badges & Pills with bg-black in light mode */
+.light-mode span[class*="bg-black/"],
+.light-mode div[class*="bg-black/"]:not(.fixed) {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light-mode button[class*="bg-white/"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Floating Focused Target HUD in 3D Tasks View */
+.light-mode .tasks-focused-target-hud {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Preserve 3D Viewer overlay text readability on HOME view */
+.light-mode main.relative.min-h-\[92vh\] h1,
+.light-mode main.relative.min-h-\[92vh\] h2,
+.light-mode main.relative.min-h-\[92vh\] h3 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9) !important;
+}
+.light-mode main.relative.min-h-\[92vh\] p {
+  color: #e2e8f0 !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* ========================================================================= */
+/* GRAPHS TO WHITE IN LIGHT MODE                                             */
+/* ========================================================================= */
+
+/* 1. MATLAB Figure Gallery Frame & Image */
+.light-mode .figure-display-frame {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+.light-mode .matlab-figure-img,
+.light-mode img[alt*="Graph"],
+.light-mode img[src*="graph_"],
+.light-mode img[src*="/figures/"] {
+  filter: invert(1) hue-rotate(180deg) contrast(1.22) brightness(1.06);
+  mix-blend-mode: multiply;
+  background-color: #ffffff !important;
+  border-radius: 6px;
+}
+
+/* 2. LEO Proximity Radar Scope in Light Mode */
+.light-mode .radar-scope-bg {
+  fill: #ffffff !important;
+  stroke: #cbd5e1 !important;
+}
+
+.light-mode .radar-concentric-ring {
+  stroke: #cbd5e1 !important;
+  opacity: 0.8 !important;
+}
+
+.light-mode .radar-ring-text {
+  fill: #0369a1 !important;
+  font-weight: 600 !important;
+}
+
+.light-mode .radar-crosshair {
+  stroke: #e2e8f0 !important;
+}
+
+.light-mode .radar-axis-label {
+  fill: #64748b !important;
+}
+
+.light-mode .radar-sweep-stop-0 {
+  stop-color: #0284c7 !important;
+  stop-opacity: 0.25 !important;
+}
+
+.light-mode .radar-sweep-stop-1 {
+  stop-color: #0284c7 !important;
+  stop-opacity: 0.0 !important;
+}
+
+.light-mode .radar-sweep-line {
+  stroke: #0284c7 !important;
+}
+
+/* Scrollbars in light mode */
+.light-mode ::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.8);
+}
+.light-mode ::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.8);
+}
+.light-mode ::-webkit-scrollbar-thumb:hover {
+  background: #0284c7;
+}
+
+/* ========================================================================= */
+/* LIVE EVENT LOG & COMMUNICATION CONSOLE IN LIGHT MODE                      */
+/* ========================================================================= */
+
+.light-mode .live-event-log-panel {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  color: #0f172a !important;
+}
+
+/* When embedded in home view scrollbar wrapper, prevent double border */
+.light-mode .custom-scrollbar > .live-event-log-panel {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+/* Event Log Header elements */
+.light-mode .event-log-icon {
+  background-color: #e0f2fe !important;
+  color: #0284c7 !important;
+  border-color: #bae6fd !important;
+}
+
+.light-mode .event-log-title,
+.light-mode .event-log-title span {
+  color: #0f172a !important;
+}
+
+.light-mode .event-log-subtitle {
+  color: #64748b !important;
+}
+
+.light-mode .event-log-counter {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border-color: #7dd3fc !important;
+  font-weight: 700 !important;
+}
+
+/* Task Log Filter Buttons */
+.light-mode .event-task-btn-active {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 1px 4px rgba(2, 132, 199, 0.2) !important;
+  font-weight: 700 !important;
+}
+
+.light-mode .event-task-btn-active[class*="emerald"] {
+  background-color: #dcfce7 !important;
+  color: #15803d !important;
+  border-color: #16a34a !important;
+  box-shadow: 0 1px 4px rgba(22, 163, 74, 0.2) !important;
+}
+
+.light-mode .event-task-btn-inactive {
+  background-color: #f1f5f9 !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light-mode .event-task-btn-inactive:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+}
+
+/* Category Filter Pills */
+.light-mode .event-cat-pill-active {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border-color: #0284c7 !important;
+  font-weight: 700 !important;
+}
+
+.light-mode .event-cat-pill-inactive {
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light-mode .event-cat-pill-inactive:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+}
+
+/* Log Item Row */
+.light-mode .event-log-item {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+}
+
+.light-mode .event-log-item:hover {
+  background-color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08) !important;
+}
+
+.light-mode .event-log-time {
+  color: #64748b !important;
+}
+
+.light-mode .event-log-task-id {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border-color: #7dd3fc !important;
+  font-weight: 700 !important;
+}
+
+.light-mode .event-log-message {
+  color: #1e293b !important;
+}
+
+/* Event Category Badges */
+.light-mode .badge-system-boot {
+  background-color: #f1f5f9 !important;
+  color: #334155 !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light-mode .badge-task-received {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border-color: #7dd3fc !important;
+}
+
+.light-mode .badge-communication {
+  background-color: #dbeafe !important;
+  color: #1d4ed8 !important;
+  border-color: #93c5fd !important;
+}
+
+.light-mode .badge-ai-analysis {
+  background-color: #f3e8ff !important;
+  color: #7e22ce !important;
+  border-color: #d8b4fe !important;
+}
+
+.light-mode .badge-allocation {
+  background-color: #fef3c7 !important;
+  color: #b45309 !important;
+  border-color: #fde68a !important;
+}
+
+.light-mode .badge-mpc {
+  background-color: #dcfce7 !important;
+  color: #15803d !important;
+  border-color: #86efac !important;
+}
+
+.light-mode .badge-imaging {
+  background-color: #ccfbf1 !important;
+  color: #0f766e !important;
+  border-color: #5eead4 !important;
+}
+
+.light-mode .badge-completed {
+  background-color: #dcfce7 !important;
+  color: #15803d !important;
+  border-color: #86efac !important;
+}
+
+.light-mode .badge-anomaly {
+  background-color: #fee2e2 !important;
+  color: #b91c1c !important;
+  border-color: #fca5a5 !important;
+}
+
+.light-mode .badge-waiting {
+  background-color: #ffedd5 !important;
+  color: #c2410c !important;
+  border-color: #fdba74 !important;
+}
+
+.light-mode .badge-default {
+  background-color: #f1f5f9 !important;
+  color: #334155 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Communication Console & Sub-panels in Light Mode */
+.light-mode .hud-panel [class*="bg-space-950"] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+.light-mode .hud-panel [class*="bg-space-900"] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+.light-mode [class*="bg-red-950/20"] {
+  background-color: #fef2f2 !important;
+  border-color: #fca5a5 !important;
+  color: #991b1b !important;
+}
+
+.light-mode [class*="bg-emerald-950/20"] {
+  background-color: #f0fdf4 !important;
+  border-color: #86efac !important;
+  color: #166534 !important;
+}
+
+
+

@@ -1,0 +1,4 @@
+Algorithm,TotalCost,ExecTime_ms,Distance_km,EnergyUsage,SuccessRate_pct,Assigned_Sat
+Hungarian,0.3764,88.15,6461.82,0.98,93.07,SAT-08
+Auction,0.9167,22.43,18549.07,2.07,89.07,SAT-01
+Greedy,0.3764,11.23,6461.82,0.98,93.07,SAT-08

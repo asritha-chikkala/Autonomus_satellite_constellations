@@ -1,0 +1,7 @@
+Fleet_Size,Orbital_Planes,Sats_Per_Plane,Coverage_Percent,Mean_Revisit_Minutes,Max_Gap_Minutes,Mean_ISL_Degree,Network_Connectivity_Percent,Task_Allocation_Latency_ms,Resilience_Score
+8,2,4,97.84,1.94,3.00,0.03,0.00,0.485,77.50
+12,3,4,100.00,0.00,0.00,0.21,0.00,1.184,85.00
+16,4,4,100.00,0.00,0.00,0.56,0.00,2.229,88.75
+20,4,5,100.00,0.00,0.00,0.70,0.00,3.641,91.00
+24,4,6,100.00,0.00,0.00,0.73,0.00,5.438,92.50
+32,8,4,100.00,0.00,0.00,0.74,0.00,10.240,94.38
